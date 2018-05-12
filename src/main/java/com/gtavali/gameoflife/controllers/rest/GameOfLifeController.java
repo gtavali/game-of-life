@@ -1,4 +1,4 @@
-package com.gtavali.gameoflife.controllers;
+package com.gtavali.gameoflife.controllers.rest;
 
 import com.gtavali.gameoflife.beans.Cell;
 import com.gtavali.gameoflife.services.GameOfLifeService;
@@ -25,13 +25,22 @@ public class GameOfLifeController {
     private GameOfLifeService service;
 
     /**
-     * Calculate the next step.
-     * @param cells
-     * @return
+     * Get the size of the board.
+     * @return the size as an integer.
      */
-    @RequestMapping(value = "/next-step", method = RequestMethod.POST)
-    public ResponseEntity<List> computeNextStep(@RequestBody List<Cell> cells) {
-        return new ResponseEntity<>(service.computeNextStep(cells), HttpStatus.OK);
+    @RequestMapping(value = "/board-size", method = RequestMethod.GET)
+    public ResponseEntity<Integer> getBoardSize() {
+        return new ResponseEntity<>(service.getBoardSize(), HttpStatus.OK);
+    }
+
+    /**
+     * Calculate the next step.
+     * @param cells list with the cells alive.
+     * @return the calculated list with the new cells.
+     */
+    @RequestMapping(value = "/next-generation", method = RequestMethod.POST)
+    public ResponseEntity<List> computeNextGeneration(@RequestBody List<Cell> cells) {
+        return new ResponseEntity<>(service.computeNextGeneration(cells), HttpStatus.OK);
     }
 
 }

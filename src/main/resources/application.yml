@@ -2,4 +2,4 @@ server:
   port: 8090
 
 game:
-  boardSize: 10
+  boardSize: 30

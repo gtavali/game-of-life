@@ -60,12 +60,14 @@ function drawEmptyCanvas() {
     ctx.closePath();
 }
 
-function paintCanvas(cells) {
+function paintCanvas(cells, color) {
     ctx.beginPath();
    for (var i = 0; i < cells.length; i++) {
        var cell = cells[i];
-      ctx.fillStyle = "black";
-      ctx.fillRect(cell.column * boxSize, cell.row * boxSize, boxSize, boxSize);
+      ctx.fillStyle = color;
+      ctx.rect(cell.column * boxSize, cell.row * boxSize, boxSize, boxSize);
+      ctx.fill();
+      ctx.stroke();
    }
    ctx.closePath();
 }
@@ -78,9 +80,9 @@ function getNextGeneration() {
           data: JSON.stringify(actualCells),
           contentType: 'application/json',
           success: function(data){
-                drawEmptyCanvas();
-                paintCanvas(data);
-                actualCells = data;
+            paintCanvas(actualCells, "white");
+            paintCanvas(data, "black");
+            actualCells = data;
           }
         })
     });

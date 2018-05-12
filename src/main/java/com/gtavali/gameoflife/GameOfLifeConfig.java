@@ -16,12 +16,4 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 public class GameOfLifeConfig {
 
-    @Value("${game.boardSize:3}")
-    private int boardSize;
-
-    @Bean
-    public GameOfLifeService gameOfLifeService() {
-        return new GameOfLifeService(this.boardSize);
-    }
-
 }

@@ -22,7 +22,7 @@ public class GameOfLifeServiceTest {
 
     @Before
     public void setUp() {
-        service = new GameOfLifeService(30);
+        service = new GameOfLifeService();
 
         cells.add(Cell.builder().row(1).column(0).build());
         cells.add(Cell.builder().row(1).column(1).build());
@@ -34,13 +34,8 @@ public class GameOfLifeServiceTest {
     }
 
     @Test
-    public void getBoardSizeTest() {
-        Assert.assertEquals(30, service.getBoardSize());
-    }
-
-    @Test
     public void computeNextGenerationTest() {
-        List<Cell> computedCells = service.computeNextGeneration(cells);
+        List<Cell> computedCells = service.computeNextGeneration(cells, 30);
 
         Assert.assertEquals(expectedCells.size(), computedCells.size());
 

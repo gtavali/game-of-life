@@ -19,13 +19,9 @@ public class GameOfLifeService {
 
     private boolean cells [][];
 
-    public GameOfLifeService(int boardSize) {
+    public List<Cell> computeNextGeneration(List<Cell> board, int boardSize) {
         this.boardSize = boardSize;
 
-        cells = new boolean[boardSize][boardSize];
-    }
-
-    public List<Cell> computeNextGeneration(List<Cell> board) {
         convertBoardToArray(board);
 
         List<Cell> newCells = new ArrayList<>();
@@ -94,10 +90,6 @@ public class GameOfLifeService {
     private void convertBoardToArray(List<Cell> board) {
         cells = new boolean[boardSize][boardSize];
         board.forEach(cell -> cells[cell.getRow()][cell.getColumn()] = true);
-    }
-
-    public int getBoardSize() {
-        return boardSize;
     }
 
 }

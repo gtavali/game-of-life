@@ -1,25 +1,21 @@
-var boardSize;
+var boardSize = 30;
 var boxSize;
 var actualCells;
 
 var canvas;
 var ctx;
 
+var play = false;
+
 function initializeCanvas() {
 $(document).ready(function() {
-    $.ajax({
-        url: "http://localhost:8090/backend/board-size"
-    }).then(function(data) {
        canvas = document.getElementById("canvas");
        canvas.addEventListener('click', handleClick);
        ctx = canvas.getContext('2d');
 
-       boardSize = data;
        boxSize = Math.floor(canvas.width / boardSize);
 
        drawEmptyCanvas();
-
-       });
     });
 }
 
@@ -47,8 +43,8 @@ function drawEmptyCanvas() {
     ctx.lineWidth = 1;
     ctx.strokeStyle = 'black';
 
-    for (var row = 0; row <= boardSize; row++) {
-       for (var column = 0; column <= boardSize; column++) {
+    for (var row = 0; row < boardSize; row++) {
+       for (var column = 0; column < boardSize; column++) {
            var x = column * boxSize;
            var y = row * boxSize;
            ctx.rect(x, y, boxSize, boxSize);
@@ -75,7 +71,7 @@ function paintCanvas(cells, color) {
 function getNextGeneration() {
     $(document).ready(function(){
         $.ajax({
-          url: "http://localhost:8090/backend/next-generation",
+          url: "http://localhost:8090/backend/next-generation/" + boardSize,
           type: "POST",
           data: JSON.stringify(actualCells),
           contentType: 'application/json',
@@ -89,7 +85,28 @@ function getNextGeneration() {
 }
 
 $(document).ready(function(){
-    $("a.nextgeneration").click(function(){ getNextGeneration(); });
+    $("button.nextgeneration").click(function(){ getNextGeneration(); });
+
+    $("button.play").click(function(){
+        play = setInterval(function(){ getNextGeneration(); }, 1000);
+    });
+
+    $("button.stop").click(function(){
+        clearInterval(play);
+    });
+
+    $("button.clear").click(function(){
+        paintCanvas(actualCells, "white");
+        actualCells = [];
+    });
+
+    $(document).on('change', '#slider', function() {
+        boardSize = $(this).val();
+        $('#slider_value').html(boardSize);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        initializeCanvas();
+    });
+
 });
 
 

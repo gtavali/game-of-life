@@ -12,3 +12,7 @@ spring:
     password: db
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
+
+logging:
+  level:
+    com.gtavali.gameoflife: INFO

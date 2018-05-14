@@ -4,6 +4,21 @@
 
 -- Table: DocumentType
 CREATE TABLE generation (
-    id SERIAL NOT NULL PRIMARY KEY,
-    name CHAR(64) NOT NULL
+    generation_id SERIAL NOT NULL PRIMARY KEY,
+    name CHAR(64) NOT NULL,
+    row_size INT,
+    column_size INT,
+    UNIQUE (name)
 );
+
+CREATE TABLE cell (
+    cell_id SERIAL NOT NULL PRIMARY KEY,
+    row INT NOT NULL,
+    column INT NOT NULL,
+    generation_id INT
+);
+
+ALTER TABLE cell
+   ADD CONSTRAINT fk_cell_generation
+   FOREIGN KEY (generation_id)
+   REFERENCES generation(generation_id);

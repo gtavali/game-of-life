@@ -1,4 +1,4 @@
-package com.gtavali.gameoflife.beans.enums;
+package com.gtavali.gameoflife.enums;
 
 /**
  * Enum to represent the decision about a cell.

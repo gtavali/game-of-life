@@ -1,6 +1,6 @@
 package com.gtavali.gameoflife.services;
 
-import com.gtavali.gameoflife.beans.Cell;
+import com.gtavali.gameoflife.entitites.Cell;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

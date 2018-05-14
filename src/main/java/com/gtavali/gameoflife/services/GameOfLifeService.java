@@ -1,7 +1,7 @@
 package com.gtavali.gameoflife.services;
 
-import com.gtavali.gameoflife.beans.Cell;
-import com.gtavali.gameoflife.beans.enums.Decision;
+import com.gtavali.gameoflife.enums.Decision;
+import com.gtavali.gameoflife.entitites.Cell;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

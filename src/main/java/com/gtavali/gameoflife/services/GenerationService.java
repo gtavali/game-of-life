@@ -22,6 +22,11 @@ public class GenerationService {
     @Autowired
     private GenerationRepository repository;
 
+    //For tests only.
+    public GenerationService(GenerationRepository repository) {
+        this.repository = repository;
+    }
+
     public List<String> getGenerationNames() {
         return repository.getNames();
     }

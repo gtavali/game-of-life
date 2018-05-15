@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Conway's Game Of Life</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="gameoflife.js"></script>
+</head>
+
+<body>
+<h1>Conway's Game Of Life</h1>
+<h3>Developed by Gabor Tavali</h3>
+
+    <pre>Start the game to choose a pattern from the list or create your own by click on board. Anytime you can save your Generation with a name. </pre>
+    <pre>To simulate the life of your generation click on 'Play' or 'Next Generation' to check it step-by-step. </pre>
+    <pre>You can clear the board anytime and if you want, change the size of it. Some patterns require different board size.</pre>
+
+
+<div>
+    <select id="dropdown" onchange="loadPattern()">Select a pattern</select>
+    <button class="nextgeneration">Next Generation</button>
+    <button class="play">Play</button>
+    <button class="stop">Stop</button>
+    <button class="clear">Clear</button>
+    <input type="range" id="slider" min="10" max="200" value="30">
+    <span id="slider_value">30</span>
+    <br><br>
+    Generation name: <input type="text"><button class="save">Save</button>
+    <br><br>
+</div>
+
+<canvas id="canvas" width="600px" height="600px"></canvas>
+<script type="text/javascript">
+        initializeCanvas();
+        populateDropdown();
+    </script>
+</body>
+
+</html>

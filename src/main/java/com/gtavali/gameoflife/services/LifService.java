@@ -4,7 +4,10 @@ import com.gtavali.gameoflife.entitites.Cell;
 import com.gtavali.gameoflife.entitites.Generation;
 import org.springframework.stereotype.Service;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -26,17 +29,18 @@ public class LifService {
      */
     private final static int START_COORDINATE = 3;
 
-    public Generation parseLif(Path path) {
+    public Generation parseLif(InputStream path) {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(path));
         Generation generation = new Generation();
         List<Cell> cells = new ArrayList<>();
         int rowNumber = START_COORDINATE;
         int columnNumber = START_COORDINATE;
         List<Integer> columnSizesByLines = new ArrayList<>();
         try {
-            Stream<String> stream = Files.lines(path);
             int row = START_COORDINATE;
             int column = START_COORDINATE;
-            for (String line : stream.collect(Collectors.toList())) {
+            String line;
+            while ((line = reader.readLine()) != null) {
                 if (line.startsWith("#D") && null == generation.getName()) {
                     generation.setName(line.substring(3));
                 }

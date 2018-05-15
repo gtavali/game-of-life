@@ -29,7 +29,7 @@ public class GameOfLifeDataLoader implements CommandLineRunner {
         Resource[] resources = resolver.getResources("classpath*:/patterns/*.lif") ;
 
         for (Resource resource : resources) {
-            Generation generation = lifService.parseLif(resource.getFile().toPath());
+            Generation generation = lifService.parseLif(resource.getInputStream());
             generationRepository.save(generation);
         }
     }

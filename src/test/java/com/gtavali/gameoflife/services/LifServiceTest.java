@@ -19,8 +19,7 @@ public class LifServiceTest {
 
     @Test
     public void parseLifTest() throws URISyntaxException {
-        Path path = Paths.get(getClass().getClassLoader().getResource("pi.lif").toURI());
-        Generation generation = lifService.parseLif(path);
+        Generation generation = lifService.parseLif(getClass().getClassLoader().getResourceAsStream("pi.lif"));
 
         Assert.assertEquals("Pi Heptomino", generation.getName());
         Assert.assertEquals(7, generation.getCells().size());

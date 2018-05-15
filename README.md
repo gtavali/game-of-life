@@ -12,11 +12,11 @@ https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 * REST
 * Maven
 
-##Requirements
+## Requirements
 * JDK 1.8 or later
 * Maven 3.2+
 
-##Run
+## Run
 1.) In the project folder:
 ```
 mvn clean spring-boot:run
@@ -42,7 +42,7 @@ server:
   port: 8090
 ```
 
-###Database
+### Database
 The application use the H2 in-memory database.\
 H2 provides a web console to check your db.\
 Go to
@@ -55,7 +55,7 @@ jdbc:h2:mem:gameoflife
 ```
 The user name and password are also in the mentioned application.yml.
 
-##How to use
+## How to use
 * With the application you can simulate the life of a cell pattern.
 * You can use the existing patterns from the dropdown list or you can create you own on the board.
 * Anytime you can save the current state of your generation or your favourite start pattern.
@@ -65,7 +65,7 @@ game-of-life/src/main/resources/patterns/
 ```
 * Remove the existing patterns from the directory if you do not need them anymore.
 
-##Packaged patterns (Life 1.05)
+## Packaged patterns (Life 1.05)
 * Max
 * Pi
 * Pinball

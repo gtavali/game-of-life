@@ -5,6 +5,8 @@ import lombok.*;
 import javax.persistence.*;
 
 /**
+ * It represents a Cell entity.
+ *
  * @author Gabor Tavali
  */
 @Entity

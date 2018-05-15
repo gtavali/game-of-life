@@ -11,6 +11,8 @@ import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.stereotype.Component;
 
 /**
+ * A data loader to load Life files from the resources. It is executed at the start up.
+ *
  * @author Gabor Tavali
  */
 @Component

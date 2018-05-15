@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The BE service of the application.
+ * The BE service of the generation computing.
  *
  * @author Gabor Tavali
  */

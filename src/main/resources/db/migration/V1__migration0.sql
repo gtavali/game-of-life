@@ -2,7 +2,7 @@
 
 -- tables
 
--- Table: DocumentType
+-- Table: generation
 CREATE TABLE generation (
     generation_id SERIAL NOT NULL PRIMARY KEY,
     name CHAR(64) NOT NULL,
@@ -11,6 +11,7 @@ CREATE TABLE generation (
     UNIQUE (name)
 );
 
+-- Table: cell
 CREATE TABLE cell (
     cell_id SERIAL NOT NULL PRIMARY KEY,
     row INT NOT NULL,

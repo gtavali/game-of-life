@@ -1,3 +1,9 @@
+/*
+The main js to serve FE and to manage BE calls.
+
+Created by Gabor Tavali.
+
+*/
 var boardSize = 30;
 var boxSize;
 var actualCells;
@@ -7,6 +13,7 @@ var ctx;
 
 var play = false;
 
+//Initialize the canvas when the FE loads.
 function initializeCanvas() {
     $(document).ready(function() {
         canvas = document.getElementById("canvas");
@@ -19,6 +26,7 @@ function initializeCanvas() {
     });
 }
 
+//Handle the click event on the board.
 function handleClick(e) {
     ctx.beginPath();
     ctx.fillStyle = "black";
@@ -37,6 +45,7 @@ function handleClick(e) {
     actualCells.push(cell);
 }
 
+//Draw an empty canvas.
 function drawEmptyCanvas() {
     ctx.beginPath();
     ctx.fillStyle = "white";
@@ -56,6 +65,7 @@ function drawEmptyCanvas() {
     ctx.closePath();
 }
 
+//Paint the canvas with the given cells and color. Black means a cell alive, white means a cell no more.
 function paintCanvas(cells, color) {
     var paintedCells = [];
     ctx.beginPath();
@@ -73,6 +83,7 @@ function paintCanvas(cells, color) {
     actualCells = paintedCells;
 }
 
+//Call BE to compute the next generation.
 function getNextGeneration() {
     $(document).ready(function() {
         $.ajax({
@@ -88,11 +99,13 @@ function getNextGeneration() {
     });
 }
 
+//Buttons ans slider setup
 $(document).ready(function() {
     $("button.nextgeneration").click(function() {
         getNextGeneration();
     });
 
+    //The delay is 1s when the board is playing.
     $("button.play").click(function() {
         play = setInterval(function() {
             getNextGeneration();
@@ -130,6 +143,7 @@ $(document).ready(function() {
             columnSize: boardSize
         };
 
+        //BE call to save a custom generation.
         $.ajax({
             url: "http://localhost:8090/backend/generation",
             type: "POST",
@@ -150,6 +164,7 @@ $(document).ready(function() {
 
 });
 
+//Populate dropdown with the name of the persisted generations including the custom patterns as well.
 function populateDropdown() {
     $.ajax({
         type: "GET",
@@ -172,6 +187,7 @@ function populateDropdown() {
     });
 }
 
+//Clear the dropdown.
 function clearDropdown() {
     var i;
     for (i = document.getElementById("dropdown").options.length - 1; i >= 0; i--) {
@@ -179,6 +195,7 @@ function clearDropdown() {
     }
 }
 
+//Load the chosen pattern from the database.
 function loadPattern() {
     var name = $('#dropdown').val();
 
